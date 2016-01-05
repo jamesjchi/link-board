@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  
+
   def new
   end
 
@@ -10,7 +13,7 @@ class SessionsController < ApplicationController
       flash[:success] = "User Logged In!"
       redirect_to root_path
     else 
-      flash[:danger] = "Please Log In"
+      flash[:danger] = "Invalid Input"
       redirect_to login_path
     end
   end

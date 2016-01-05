@@ -1,1 +1,12 @@
 <h1>Link Board</h1>
+
+<% @posts.each do |t| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= t.title %><br>
+        <%= t.link %>
+      </div>
+      <%= link_to 'delete', t, :class => 'js-delete-btn btn btn-danger' %>
+    </div>
+<% end %>
+
