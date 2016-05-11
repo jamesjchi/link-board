@@ -1,12 +1,24 @@
 <h1>Link Board</h1>
 
 <% @posts.each do |t| %>
+  <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
         <%= t.title %><br>
-        <%= t.link %>
+        <a href='<%= t.link %>'><%= t.link%></a><br>
+        Author: <%= t.user.name %>
+      <p><%= link_to "Comments: (#{t.comment.count})", post_comments_path(t) %></p>
+      
+      
+      <i class="fa fa-thumbs-o-up"><%= link_to 'Vote Up' %></i>
+      <i class="fa fa-thumbs-o-down"><%= link_to 'Vote Down' %></i>
+
+      <p>Total Votes: (<%= t.votes.count %>) </p>
+
       </div>
-      <%= link_to 'delete', t, :class => 'js-delete-btn btn btn-danger' %>
+
     </div>
+  </div>
+
 <% end %>
 

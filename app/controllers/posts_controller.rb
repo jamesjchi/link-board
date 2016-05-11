@@ -1,20 +1,24 @@
 class PostsController < ApplicationController
 
   before_action :is_authenticated?
-  
+
   def new
     @post = Post.new
   end
 
   def create
-    @post = Post.create(post_params)
+    @post = Post.create post_params do |p|
 
+      p.user_id = @current_user.id
+      p.save
+    end
     if @post.save
-    redirect_to root_path
+      flash[:success] = "Post Created!"
+      redirect_to root_path
 
     else
       flash[:danger] = "Invalid Input"
-      redirect_to '/posts/new'
+      redirect_to new_post_path
     end
   end
 

@@ -1,0 +1,20 @@
+<h1><%= link_to @post.title, @post.link %></h1>
+
+<div class="text-center">
+  <%= link_to 'New Comment', new_post_comment_path(@post), class: 'btn btn-primary' %>
+</div>
+<hr>
+<div class="text-center">
+  <p>Number of comments: <%= @post.comment.count %> </p>
+<hr>
+
+<% @post.comment.each do |comment| %>
+  <div class="well">
+    <p><%= comment.content %></p>
+    <p>Created on: <%= comment.created_at.strftime("%m/%d/%Y") %></p>
+    <strong>By <%= comment.user.name %></strong>
+
+  </div>
+<% end %>
+
+

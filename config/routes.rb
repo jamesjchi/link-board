@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'votes/create'
+
   # get 'posts/new'
 
   # get 'posts/create'
@@ -28,9 +30,12 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   post 'users' => 'users#create'
 
-  post 'posts/new' => 'posts#new'
+  # post 'posts/new' => 'posts#new'
 
-  resources :posts
+  resources :posts, only: [:new, :create, :show] do
+    resources :comments, only: [:index, :new, :create, :destroy]
+    resources :votes, only: [:create]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
